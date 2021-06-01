@@ -7,8 +7,13 @@
 
 import Foundation
 
-struct Expert: Hashable {
+struct Expert: Hashable, Identifiable {
+    private(set) var id: String = UUID().uuidString
     var type: RelationshipType
     var weight: Int
     var name: String
+}
+
+extension Expert: Codable {
+
 }

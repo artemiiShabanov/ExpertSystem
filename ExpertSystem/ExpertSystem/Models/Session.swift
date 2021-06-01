@@ -7,30 +7,40 @@
 
 import Foundation
 
-struct Mark {
+struct Mark: Codable {
     let confidence: Confidence
     let value: String
 }
 
-struct Session {
-    private(set) var experts: [Expert] = []
-    private(set) var variants: [Variant] = []
-    private(set) var confidences: [Confidence] = []
+struct Session: Identifiable {
+    let id: String
+    let name: String
+
+    init(name: String) {
+        self.id = UUID().uuidString
+        self.name = name
+    }
+
+    var experts: [Expert] = [] {
+        didSet {
+            reset()
+        }
+    }
+    var variants: [Variant] = [] {
+        didSet {
+            reset()
+        }
+    }
+    var confidences: [Confidence] = [] {
+        didSet {
+            reset()
+        }
+    }
 
     private(set) var variantPairs: [VariantPair] = []
-    private(set) var preferences: [Expert: [VariantPair: Mark]]
+    private(set) var preferences: [Expert: [VariantPair: Mark]] = [:]
 
     var result: [Float] = [] // sum == 1, count == variant.count
-
-    mutating func updateExperts(experts: [Expert]) {
-        self.experts = experts
-        reset()
-    }
-
-    mutating func updateVariants(variants: [Variant]) {
-        self.variants = variants
-        reset()
-    }
 
     mutating func updateConfidences(confidences: [Confidence]) {
         self.confidences = confidences
@@ -49,4 +59,10 @@ struct Session {
         }
     }
 
+}
+
+
+
+extension Session: Codable {
+    
 }

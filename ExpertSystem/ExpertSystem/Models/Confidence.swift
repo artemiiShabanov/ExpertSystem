@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct Confidence {
+struct Confidence: Identifiable, Equatable {
+    private(set) var id = UUID().uuidString
     var name: String
-    var position: Float
+    var index: Int
 }
+
+extension Confidence: Codable { }

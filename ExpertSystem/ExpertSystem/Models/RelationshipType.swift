@@ -43,3 +43,46 @@ enum MultiPossibleValue {
     case a8
     case a9
 }
+
+extension RelationshipType: Codable {
+
+    enum Key: CodingKey {
+        case rawValue
+    }
+
+    enum CodingError: Error {
+        case unknownValue
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Key.self)
+        let rawValue = try container.decode(String.self, forKey: .rawValue)
+        if rawValue == "multi" {
+            self = .multi
+        }
+        if rawValue == "addi" {
+            self = .addi
+        }
+        if rawValue.starts(with: "ling") {
+            guard let firstIndex = rawValue.firstIndex(where: { $0 == "-" }) else { throw CodingError.unknownValue }
+            guard let secondIndex = rawValue.suffix(from: firstIndex).firstIndex(where: { $0 == "-" }) else { throw CodingError.unknownValue }
+            let min = Int(rawValue[rawValue.index(after: firstIndex) ..< secondIndex]) ?? 0
+            let max = Int(rawValue[rawValue.index(after: secondIndex) ..< rawValue.endIndex]) ?? 10
+            self = .ling(min: min, max: max)
+        }
+        throw CodingError.unknownValue
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Key.self)
+        switch self {
+        case .multi:
+            try container.encode("multi", forKey: .rawValue)
+        case .addi:
+            try container.encode("addi", forKey: .rawValue)
+        case .ling(let min, let max):
+            try container.encode("ling-\(min)-\(max)", forKey: .rawValue)
+        }
+    }
+
+}

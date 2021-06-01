@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A4C090562666894B00051E0D /* SessionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C090542666894B00051E0D /* SessionListViewModel.swift */; };
+		A4C090572666894B00051E0D /* SessionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C090552666894B00051E0D /* SessionListView.swift */; };
+		A4C0905A26669ACB00051E0D /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C0905926669ACB00051E0D /* SessionViewModel.swift */; };
+		A4C0905C26669AD300051E0D /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C0905B26669AD300051E0D /* SessionView.swift */; };
+		A4C0905F26669C7F00051E0D /* SessionItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C0905E26669C7F00051E0D /* SessionItemViewModel.swift */; };
+		A4C090642666AA4600051E0D /* NewSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C090632666AA4600051E0D /* NewSessionView.swift */; };
+		A4C090662666AB4200051E0D /* NewConfidenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C090652666AB4200051E0D /* NewConfidenceView.swift */; };
+		A4C090682666ACDE00051E0D /* NewVariantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C090672666ACDE00051E0D /* NewVariantView.swift */; };
+		A4C0906A2666AE3500051E0D /* NewExpertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C090692666AE3500051E0D /* NewExpertView.swift */; };
+		A4C0906C2666B0FA00051E0D /* View+anyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C0906B2666B0FA00051E0D /* View+anyView.swift */; };
 		A4EADC4726628D430053A4C2 /* ExpertSystemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EADC4626628D430053A4C2 /* ExpertSystemApp.swift */; };
 		A4EADC4926628D430053A4C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EADC4826628D430053A4C2 /* ContentView.swift */; };
 		A4EADC4B26628D4F0053A4C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4EADC4A26628D4F0053A4C2 /* Assets.xcassets */; };
@@ -19,6 +29,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A4C090542666894B00051E0D /* SessionListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionListViewModel.swift; sourceTree = "<group>"; };
+		A4C090552666894B00051E0D /* SessionListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionListView.swift; sourceTree = "<group>"; };
+		A4C0905926669ACB00051E0D /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
+		A4C0905B26669AD300051E0D /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
+		A4C0905E26669C7F00051E0D /* SessionItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionItemViewModel.swift; sourceTree = "<group>"; };
+		A4C090632666AA4600051E0D /* NewSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSessionView.swift; sourceTree = "<group>"; };
+		A4C090652666AB4200051E0D /* NewConfidenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConfidenceView.swift; sourceTree = "<group>"; };
+		A4C090672666ACDE00051E0D /* NewVariantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVariantView.swift; sourceTree = "<group>"; };
+		A4C090692666AE3500051E0D /* NewExpertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpertView.swift; sourceTree = "<group>"; };
+		A4C0906B2666B0FA00051E0D /* View+anyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+anyView.swift"; sourceTree = "<group>"; };
 		A4EADC4326628D430053A4C2 /* ExpertSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpertSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4EADC4626628D430053A4C2 /* ExpertSystemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertSystemApp.swift; sourceTree = "<group>"; };
 		A4EADC4826628D430053A4C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,6 +63,101 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A426E25F2666891200511F27 /* NewSession */ = {
+			isa = PBXGroup;
+			children = (
+				A4C090632666AA4600051E0D /* NewSessionView.swift */,
+			);
+			path = NewSession;
+			sourceTree = "<group>";
+		};
+		A4BBCB27266669BF009827C8 /* NewVariant */ = {
+			isa = PBXGroup;
+			children = (
+				A4C090672666ACDE00051E0D /* NewVariantView.swift */,
+			);
+			path = NewVariant;
+			sourceTree = "<group>";
+		};
+		A4C090522666894B00051E0D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A426E25F2666891200511F27 /* NewSession */,
+				A4C090532666894B00051E0D /* SessionList */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		A4C090532666894B00051E0D /* SessionList */ = {
+			isa = PBXGroup;
+			children = (
+				A4C0905D26669C7600051E0D /* Models */,
+				A4C090542666894B00051E0D /* SessionListViewModel.swift */,
+				A4C090552666894B00051E0D /* SessionListView.swift */,
+			);
+			path = SessionList;
+			sourceTree = "<group>";
+		};
+		A4C0905826669AB900051E0D /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				A4C0906026669C8600051E0D /* Models */,
+				A4C0905926669ACB00051E0D /* SessionViewModel.swift */,
+				A4C0905B26669AD300051E0D /* SessionView.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		A4C0905D26669C7600051E0D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A4C0905E26669C7F00051E0D /* SessionItemViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A4C0906026669C8600051E0D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A4D131C426656813006E1A89 /* SessionDetails */ = {
+			isa = PBXGroup;
+			children = (
+				A4D131C526656E2A006E1A89 /* NewExpert */,
+				A4BBCB27266669BF009827C8 /* NewVariant */,
+				A4D131C626656E33006E1A89 /* NewConfidence */,
+				A4C0905826669AB900051E0D /* Session */,
+				A4D131C726656EC1006E1A89 /* Marks */,
+			);
+			path = SessionDetails;
+			sourceTree = "<group>";
+		};
+		A4D131C526656E2A006E1A89 /* NewExpert */ = {
+			isa = PBXGroup;
+			children = (
+				A4C090692666AE3500051E0D /* NewExpertView.swift */,
+			);
+			path = NewExpert;
+			sourceTree = "<group>";
+		};
+		A4D131C626656E33006E1A89 /* NewConfidence */ = {
+			isa = PBXGroup;
+			children = (
+				A4C090652666AB4200051E0D /* NewConfidenceView.swift */,
+			);
+			path = NewConfidence;
+			sourceTree = "<group>";
+		};
+		A4D131C726656EC1006E1A89 /* Marks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Marks;
+			sourceTree = "<group>";
+		};
 		A4EADC3A26628D420053A4C2 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +235,7 @@
 		A4EADC592664BD1A0053A4C2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A4C0906B2666B0FA00051E0D /* View+anyView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -127,16 +243,10 @@
 		A4EADC5A2664BD1F0053A4C2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				A4EADC5B2664BD2D0053A4C2 /* Main */,
+				A4C090522666894B00051E0D /* Main */,
+				A4D131C426656813006E1A89 /* SessionDetails */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		A4EADC5B2664BD2D0053A4C2 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 		A4EADC5C2664BD380053A4C2 /* App */ = {
@@ -217,10 +327,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4C0905C26669AD300051E0D /* SessionView.swift in Sources */,
+				A4C090662666AB4200051E0D /* NewConfidenceView.swift in Sources */,
 				A4EADC602664BDED0053A4C2 /* Session.swift in Sources */,
+				A4C0905A26669ACB00051E0D /* SessionViewModel.swift in Sources */,
+				A4C090562666894B00051E0D /* SessionListViewModel.swift in Sources */,
+				A4C0905F26669C7F00051E0D /* SessionItemViewModel.swift in Sources */,
 				A4EADC682664D41E0053A4C2 /* Confidence.swift in Sources */,
+				A4C0906C2666B0FA00051E0D /* View+anyView.swift in Sources */,
 				A4EADC5E2664BD990053A4C2 /* Expert.swift in Sources */,
+				A4C090642666AA4600051E0D /* NewSessionView.swift in Sources */,
+				A4C090572666894B00051E0D /* SessionListView.swift in Sources */,
 				A4EADC4926628D430053A4C2 /* ContentView.swift in Sources */,
+				A4C0906A2666AE3500051E0D /* NewExpertView.swift in Sources */,
+				A4C090682666ACDE00051E0D /* NewVariantView.swift in Sources */,
 				A4EADC642664BED10053A4C2 /* RelationshipType.swift in Sources */,
 				A4EADC622664BEA80053A4C2 /* Variant.swift in Sources */,
 				A4EADC4726628D430053A4C2 /* ExpertSystemApp.swift in Sources */,

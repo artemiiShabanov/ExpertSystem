@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Variant: Hashable {
+struct Variant: Hashable, Identifiable {
+    private(set) var id: String = UUID().uuidString
     var index: Int
     var name: String
 }
@@ -15,4 +16,12 @@ struct Variant: Hashable {
 struct VariantPair: Hashable {
     var variantRegardingWhich: Variant
     var variant: Variant
+}
+
+extension Variant: Codable {
+
+}
+
+extension VariantPair: Codable {
+
 }
