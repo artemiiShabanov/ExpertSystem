@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A45CB7B22667C1A200F62E3C /* MarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45CB7B12667C1A200F62E3C /* MarksViewModel.swift */; };
+		A45CB7B42667C1AB00F62E3C /* MarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45CB7B32667C1AB00F62E3C /* MarksView.swift */; };
 		A4C090562666894B00051E0D /* SessionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C090542666894B00051E0D /* SessionListViewModel.swift */; };
 		A4C090572666894B00051E0D /* SessionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C090552666894B00051E0D /* SessionListView.swift */; };
 		A4C0905A26669ACB00051E0D /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C0905926669ACB00051E0D /* SessionViewModel.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A45CB7B12667C1A200F62E3C /* MarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksViewModel.swift; sourceTree = "<group>"; };
+		A45CB7B32667C1AB00F62E3C /* MarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksView.swift; sourceTree = "<group>"; };
 		A4C090542666894B00051E0D /* SessionListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionListViewModel.swift; sourceTree = "<group>"; };
 		A4C090552666894B00051E0D /* SessionListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionListView.swift; sourceTree = "<group>"; };
 		A4C0905926669ACB00051E0D /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 		A4D131C726656EC1006E1A89 /* Marks */ = {
 			isa = PBXGroup;
 			children = (
+				A45CB7B12667C1A200F62E3C /* MarksViewModel.swift */,
+				A45CB7B32667C1AB00F62E3C /* MarksView.swift */,
 			);
 			path = Marks;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 				A4C0905C26669AD300051E0D /* SessionView.swift in Sources */,
 				A4C090662666AB4200051E0D /* NewConfidenceView.swift in Sources */,
 				A4EADC602664BDED0053A4C2 /* Session.swift in Sources */,
+				A45CB7B22667C1A200F62E3C /* MarksViewModel.swift in Sources */,
 				A4C0905A26669ACB00051E0D /* SessionViewModel.swift in Sources */,
 				A4C090562666894B00051E0D /* SessionListViewModel.swift in Sources */,
 				A4C0905F26669C7F00051E0D /* SessionItemViewModel.swift in Sources */,
@@ -344,6 +351,7 @@
 				A4EADC642664BED10053A4C2 /* RelationshipType.swift in Sources */,
 				A4EADC622664BEA80053A4C2 /* Variant.swift in Sources */,
 				A4EADC4726628D430053A4C2 /* ExpertSystemApp.swift in Sources */,
+				A45CB7B42667C1AB00F62E3C /* MarksView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,47 @@
 
 import SwiftUI
 
-class SessionListViewModel: ObservableObject {
+protocol SessionListViewModelProtocol: ObservableObject {
+    var sessionModels: [SessionItemViewModel] { get }
+    func loadFromDisk()
+    func add(session: Session)
+    func update(session: Session)
+    func deleteSession(by id: String)
+    func getSession(by id: String) -> Session?
+}
+
+class MockSessionListViewModel: SessionListViewModelProtocol {
+
+    @Published var sessionModels: [SessionItemViewModel] = []
+
+    func loadFromDisk() {
+        sessionModels.append(contentsOf: [
+                                SessionItemViewModel(name: "Сессия 1", variantsCount: 4, expertsCount: 3, id: "1"),
+                                SessionItemViewModel(name: "Сессия 2", variantsCount: 5, expertsCount: 7, id: "2"),
+                                SessionItemViewModel(name: "Сессия 3", variantsCount: 3, expertsCount: 5, id: "3"),
+                                SessionItemViewModel(name: "Сессия 4", variantsCount: 3, expertsCount: 2, id: "4")
+        ])
+    }
+    func update(session: Session) {
+        guard let index = sessionModels.firstIndex(where: { $0.id == session.id } ) else {
+            return
+        }
+        sessionModels[index] = SessionItemViewModel.from(session: session)
+    }
+    func add(session: Session) {
+        sessionModels.append(SessionItemViewModel.from(session: session))
+    }
+    func deleteSession(by id: String) {
+        if let index = sessionModels.firstIndex(where: { $0.id == id }) {
+            sessionModels.remove(at: index)
+        }
+    }
+    func getSession(by id: String) -> Session? {
+        return nil
+    }
+}
+
+class SessionListViewModel: SessionListViewModelProtocol {
 
     // MARK: - Private Properties
 
@@ -36,11 +76,21 @@ class SessionListViewModel: ObservableObject {
 
     func add(session: Session) {
         sessions.append(session)
+        updateUD()
+    }
+
+    func update(session: Session) {
+        guard let index = sessions.firstIndex(where: { $0.id == session.id } ) else {
+            return
+        }
+        sessions[index] = session
+        updateUD()
     }
 
     func deleteSession(by id: String) {
         if let index = sessions.firstIndex(where: { $0.id == id }) {
             sessions.remove(at: index)
+            updateUD()
         }
     }
 

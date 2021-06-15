@@ -9,44 +9,67 @@ import SwiftUI
 
 struct NewExpertView: View {
 
+    // MARL: - Environment
+
+    @Environment(\.presentationMode) var presentationMode
+
+    // MARK: - Properties
+
     let onSave: (Expert) -> ()
+
+    private let types = ["Multi", "Addi", "Ling"]
+
+    // MARK: - State
+
     @State private var name = ""
     @State private var weight = 0
     @State private var typeString = "Multi"
     @State private var lingFrom = 0
-    @State private var lingTo = 100
+    @State private var lingTo = 10
 
-    private let types = ["Multi", "Addi", "Ling"]
+    // MARK: - View
 
     var body: some View {
         VStack {
-            TextField("name", text: $name)
-            HStack {
-                Text("weight: " + String(weight))
-                Stepper("", value: $weight, in: 0...20, step: 1)
-            }
+            textField
+            weightView
+            typeView
+            Spacer()
+            saveButton
+        }
+        .background(Color.purple.opacity(0.1))
+    }
+
+    // MARK: - Subviews
+
+    private var textField: some View {
+        TextField("Имя", text: $name)
+            .accentColor(.purple)
+            .foregroundColor(.purple)
+            .padding()
+    }
+
+    private var weightView: some View {
+        HStack {
+            Text("Вес: " + String(weight))
+            Stepper("", value: $weight, in: 0...20, step: 1)
+                .accentColor(.purple)
+        }
+        .padding()
+    }
+
+    private var typeView: some View {
+        VStack(alignment: .leading, spacing: 0) {
             Picker("", selection: $typeString) {
                 ForEach(types, id: \.self) {
                     Text($0)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
+            .accentColor(.purple)
+            .padding()
             lingSetupBlock
-            Spacer()
-            Button("save") {
-                let type: RelationshipType
-                switch typeString {
-                case "Multi":
-                    type = .multi
-                case "Addi":
-                    type = .addi
-                case "Ling":
-                    type = .ling(min: lingFrom, max: lingTo)
-                default:
-                    type = .multi
-                }
-                onSave(Expert(type: type, weight: weight, name: name))
-            }
+                .padding()
         }
     }
 
@@ -54,16 +77,45 @@ struct NewExpertView: View {
         if typeString == "Ling" {
             return VStack {
                 HStack {
-                    Text("from: " + String(lingFrom))
+                    Text("от: " + String(lingFrom))
                     Stepper("", value: $lingFrom, in: 0...lingTo)
                 }
                 HStack {
-                    Text("to: " + String(lingTo))
+                    Text("до: " + String(lingTo))
                     Stepper("", value: $lingTo, in: lingFrom...100)
                 }
             }.toAnyView()
         }
         return EmptyView().toAnyView()
+    }
+
+    private var saveButton: some View {
+        Button(action: {
+            let type: RelationshipType
+            switch typeString {
+            case "Multi":
+                type = .multi
+            case "Addi":
+                type = .addi
+            case "Ling":
+                type = .ling(min: lingFrom, max: lingTo)
+            default:
+                type = .multi
+            }
+            onSave(Expert(type: type, weight: weight, name: name))
+            presentationMode.wrappedValue.dismiss()
+        }) {
+            Text("Сохранить")
+                .foregroundColor(.purple)
+                .font(.footnote)
+            Image(systemName: "checkmark")
+                .foregroundColor(.purple)
+                .font(.footnote)
+        }
+        .padding(10)
+        .background(Color.purple.opacity(0.3))
+        .cornerRadius(10)
+        .padding(10)
     }
 
 }

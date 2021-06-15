@@ -12,6 +12,9 @@ struct Mark: Codable {
     let value: String
 }
 
+typealias Marks = [VariantPair: Mark]
+typealias Preferences = [Expert: Marks]
+
 struct Session: Identifiable {
     let id: String
     let name: String
@@ -38,7 +41,7 @@ struct Session: Identifiable {
     }
 
     private(set) var variantPairs: [VariantPair] = []
-    private(set) var preferences: [Expert: [VariantPair: Mark]] = [:]
+    var preferences: Preferences = [:]
 
     var result: [Float] = [] // sum == 1, count == variant.count
 

@@ -7,47 +7,88 @@
 
 import SwiftUI
 
-struct SessionListView: View {
+struct SessionListView<VM: SessionListViewModelProtocol>: View {
 
-    // MARK: - Models
+    // MARK: - State
 
-    @StateObject var vm = SessionListViewModel()
+    @StateObject private var vm: VM
+    @State private var shownNewSession = false
+    @State private var session: Session?
+
+    // MARK: - Init
+
+    init(vm: VM) {
+        _vm = StateObject(wrappedValue: vm)
+    }
 
     // MARK: - View
 
     var body: some View {
         ZStack {
             ScrollView(showsIndicators: false) {
-                VStack {
-                    Header()
+                VStack(spacing: 0) {
+                    header
                     ForEach(vm.sessionModels) {
-                        SessionItemView(session: $0)
+                        SessionItemView(session: $0,
+                                        onTap: {
+                                            self.session = vm.getSession(by: $0)
+                                        },
+                                        onDelete: {
+                                            vm.deleteSession(by: $0)
+                                        })
+                            .padding(.horizontal)
+                            .padding(.vertical, 5)
                     }
+                    Spacer(minLength: 100)
                 }
             }
             VStack {
                 Spacer()
-                Footer()
+                footer
             }
         }
         .onAppear {
             vm.loadFromDisk()
         }
-    }
-}
-
-// MARK: - Subviews
-
-fileprivate struct Header: View {
-
-    // MARK: - View
-
-    var body: some View {
-        Text("Some header")
-            .frame(height: 100)
-            .frame(maxWidth: .infinity)
+        .sheet(isPresented: $shownNewSession, content: {
+            NewSessionView(onSave: {
+                vm.add(session: $0)
+            })
+        })
+        .sheet(item: $session, content: {
+            SessionView(vm: SessionViewModel(session: $0), onSave: {
+                self.vm.update(session: $0)
+            })
+        })
     }
 
+    // MARK: - Subviews
+
+    private var header: some View {
+        HStack {
+            Text("Текущие сессии")
+                .font(.title)
+                .padding()
+            Spacer()
+        }
+    }
+
+    private var footer: some View {
+        Button(action: {
+            shownNewSession = true
+        }, label: {
+            HStack {
+                Image(systemName: "plus.circle.fill")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(.purple)
+            }
+            .background(Color.white)
+            .cornerRadius(25)
+        })
+        .padding()
+    }
+    
 }
 
 fileprivate struct SessionItemView: View {
@@ -55,48 +96,62 @@ fileprivate struct SessionItemView: View {
     // MARK: - Models
 
     let session: SessionItemViewModel
+    let onTap: (String) -> ()
+    let onDelete: (String) -> ()
 
     // MARK: - View
 
     var body: some View {
-        Color.red
-            .frame(height: 100)
-            .frame(maxWidth: .infinity)
-    }
-}
-
-fileprivate struct Footer: View {
-
-    // MARK: - View
-
-    var body: some View {
-        Button("New session") {
-
+        HStack {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(session.name)
+                    .font(.headline)
+                    .padding(.bottom)
+                HStack {
+                    HStack(spacing: 0) {
+                        Text("Экспертов: ")
+                            .font(.caption2)
+                        Text(String(session.expertsCount))
+                            .font(.caption2)
+                    }
+                    HStack(spacing: 0) {
+                        Text("Вариантов: ")
+                            .font(.caption2)
+                        Text(String(session.variantsCount))
+                            .font(.caption2)
+                    }
+                }
+            }
+            Spacer()
         }
-        .frame(height: 60)
-        .frame(maxWidth: .infinity)
         .padding()
+        .background(Color.purple.opacity(0.2))
+        .cornerRadius(5)
+        .onTapGesture {
+            onTap(session.id)
+        }
+        .contextMenu {
+            Button(action: {
+                onTap(session.id)
+            }) {
+                Text("Open")
+            }
+
+            Button(action: {
+                onDelete(session.id)
+            }) {
+                Text("Delete")
+                Image(systemName: "minus.circle")
+                    .foregroundColor(.red)
+            }
+        }
     }
 }
 
 // MARK: - Previews
 
-struct Header_Previews: PreviewProvider {
-    static var previews: some View {
-        Header()
-            .previewLayout(.sizeThatFits)
-    }
-}
-
-struct SessionItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        SessionItemView(session: SessionItemViewModel(name: "Some name", variantsCount: 4, expertsCount: 3, id: "fd"))
-            .previewLayout(.sizeThatFits)
-    }
-}
-
 struct SessionListView_Previews: PreviewProvider {
     static var previews: some View {
-        SessionListView()
+        SessionListView(vm: MockSessionListViewModel())
     }
 }
